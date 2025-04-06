@@ -23,3 +23,34 @@ const reviews = [
 /////////////////////////////////////////////////////////////////////
 
 //Your Code Below Here////
+
+// defines each relevant section within index.html to a variable
+const reviewsSection = document.querySelector(".reviews");
+const starDisplay = document.querySelector(".starRating");
+const form = document.querySelector("form");
+
+// loads a review onto the DOM
+function renderReview(reviewObj) {
+  const container = document.createElement("div");
+  container.classList.add("review_container");
+
+  const img = document.createElement("img");
+  img.src = reviewObj.image;
+
+  const infoDiv = document.createElement("div");
+  const user = document.createElement("p");
+  user.textContent = reviewObj.username;
+
+  const stars = document.createElement("p");
+  stars.textContent = `Rating: ${reviewObj.star}`;
+
+  const text = document.createElement("p");
+  text.textContent = reviewObj.review;
+
+  infoDiv.append(user, stars, text);
+  container.append(img, infoDiv);
+  reviewsSection.appendChild(container);
+}
+
+// renders all current reviews utilizing renderReview function
+reviews.forEach(renderReview);
